@@ -107,4 +107,75 @@ class Database {
             return $st->fetch(PDO::FETCH_ASSOC);
         }
 
+        public function processCheckout($cartItems) {
+            $errors = [];
+            $success = true;
+            
+            try {
+                $this->conn->beginTransaction();
+                
+                foreach ($cartItems as $item) {
+                    if (!is_array($item) || !isset($item['id']) || !isset($item['qty'])) {
+                        $errors[] = "Invalid item data";
+                        $success = false;
+                        continue;
+                    }
+                    
+                    $gameId = (int)$item['id'];
+                    $requestedQty = (int)$item['qty'];
+                    
+                    $game = $this->getGameById($gameId);
+                    if (!$game) {
+                        $errors[] = "Game with ID {$gameId} not found";
+                        $success = false;
+                        continue;
+                    }
+                    
+                    $currentStock = (int)$game['number_of_pieces'];
+                    
+                    if ($currentStock < $requestedQty) {
+                        $errors[] = "Not enough stock for {$game['title']}. Available: {$currentStock}, Requested: {$requestedQty}";
+                        $success = false;
+                        continue;
+                    }
+                    
+                    $newStock = $currentStock - $requestedQty;
+                    $sql = "UPDATE Games SET number_of_pieces = :newStock WHERE id = :id";
+                    $st = $this->conn->prepare($sql);
+                    $st->bindValue(':newStock', $newStock, PDO::PARAM_INT);
+                    $st->bindValue(':id', $gameId, PDO::PARAM_INT);
+                    $st->execute();
+                }
+                
+                if ($success) {
+                    $this->conn->commit();
+                } else {
+                    $this->conn->rollBack();
+                }
+                
+            } catch (PDOException $e) {
+                $this->conn->rollBack();
+                $errors[] = "Database error: " . $e->getMessage();
+                $success = false;
+            }
+            
+            return [
+                'success' => $success,
+                'errors' => $errors
+            ];
+        }
+
+        public function deleteGame($id) {
+            try {
+                $sql = "DELETE FROM Games WHERE id = :id";
+                $st = $this->conn->prepare($sql);
+                $st->bindValue(':id', $id, PDO::PARAM_INT);
+                $st->execute();
+                
+                return $st->rowCount() > 0;
+            } catch (PDOException $e) {
+                return false;
+            }
+        }
+
 }

@@ -123,6 +123,6 @@ if (isset($_GET['logout']) && isset($_SESSION['user_id'])) {
     clear_remember_cookie();
     session_unset();
     session_destroy();
-    header("Location: ../.php");
+    header("Location: ../index.php");
     exit();
 }

@@ -10,6 +10,20 @@ $user = $_SESSION['username'] ?? $_SESSION['name'] ?? (isset($_SESSION['email'])
 require_once dirname(__DIR__) . '/database/database_init.php';
 $db = new Database();
 $games = $db->getAllGames();
+
+$cart = [];
+$itemCount = 0;
+if (isset($_COOKIE['cart'])) {
+    $cartData = json_decode($_COOKIE['cart'], true);
+    if (is_array($cartData)) {
+        $cart = $cartData;
+        foreach ($cart as $item) {
+            if (isset($item['qty']) && is_numeric($item['qty'])) {
+                $itemCount += (int)$item['qty'];
+            }
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,16 +35,18 @@ $games = $db->getAllGames();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-<body>
     <nav class="navbar">
       <div class="navbar__container">
-        <a href="index.php" id="navbar__logo">
+        <a href="../index.php" id="navbar__logo">
           <i class="fas fa-gamepad"></i>
         </a>
 
         <li class="shop-icon">
-          <a href="cart.php" class="btn" id="cartBtn" style="margin-right:10px;">
+          <a href="cart.php" class="btn" id="cartBtn" style="margin-right:10px; position: relative;">
             <i class="fa-solid fa-cart-shopping"></i>
+            <?php if ($itemCount > 0): ?>
+                <span style="background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; position: absolute; top: -5px; right: -5px;"><?= $itemCount ?></span>
+            <?php endif; ?>
           </a>
         </li>
 
@@ -41,8 +57,7 @@ $games = $db->getAllGames();
               <?= htmlspecialchars($user, ENT_QUOTES|ENT_HTML5, 'UTF-8') ?>
             </button>
             <ul class="dropdown-menu" id="dropdownMenu">
-              <li><a href="settings.php"><i class="fa-solid fa-gear"></i> Settings</a></li>
-              <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a></li>
+              <li><a href="../php/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a></li>
             </ul>
           </div>
         </li>

@@ -13,6 +13,20 @@ if (!$game) {
 $title = $game['title'] . ' | Ecom Games';
 $bgImg = '../imgs/items/' . htmlspecialchars($game['image'], ENT_QUOTES);
 $user = $_SESSION['username'] ?? $_SESSION['name'] ?? (isset($_SESSION['email']) ? explode('@', $_SESSION['email'])[0] : 'User');
+
+$cart = [];
+$itemCount = 0;
+if (isset($_COOKIE['cart'])) {
+    $cartData = json_decode($_COOKIE['cart'], true);
+    if (is_array($cartData)) {
+        $cart = $cartData;
+        foreach ($cart as $item) {
+            if (isset($item['qty']) && is_numeric($item['qty'])) {
+                $itemCount += (int)$item['qty'];
+            }
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,12 +40,15 @@ $user = $_SESSION['username'] ?? $_SESSION['name'] ?? (isset($_SESSION['email'])
 <body>
     <nav class="navbar">
       <div class="navbar__container">
-        <a href="index.php" id="navbar__logo">
+        <a href="../index.php" id="navbar__logo">
           <i class="fas fa-gamepad"></i>
         </a>
           <li class="shop-icon">
-           <a href="cart.php" class="btn" id="cartBtn" style="margin-right:10px;">
+           <a href="cart.php" class="btn" id="cartBtn" style="margin-right:10px; position: relative;">
               <i class="fa-solid fa-cart-shopping"></i>
+              <?php if ($itemCount > 0): ?>
+                  <span class="ic"><?= $itemCount ?></span>
+              <?php endif; ?>
            </a>
           </li>
           <li class="navbar__btn">
@@ -41,13 +58,11 @@ $user = $_SESSION['username'] ?? $_SESSION['name'] ?? (isset($_SESSION['email'])
                   <i class="fa-solid fa-user"></i> <?php echo $user; ?>
                 </button>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                  <li><a href="settings.php"><i class="fa-solid fa-gear"></i> Settings</a></li>
-                  <li><a href="orders.php"><i class="fa-solid fa-box"></i> My Orders</a></li>
-                  <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a></li>
+                  <li><a href="../database/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a></li>
                 </ul>
               </div>
             <?php else: ?>
-              <a href="../php/login_forum.php" class="btn" id="signupBtn">
+              <a href="login_forum.php" class="btn" id="signupBtn">
                 <i class="fa-solid fa-user"></i> Login
               </a>
             <?php endif; ?>
@@ -66,6 +81,11 @@ $user = $_SESSION['username'] ?? $_SESSION['name'] ?? (isset($_SESSION['email'])
     </div>
     <div class="game-detail-info-card">
       <div class="game-detail-title"><?= htmlspecialchars($game['title'],ENT_QUOTES) ?></div>
+      <?php if (isset($_GET['added']) && $_GET['added'] == '1'): ?>
+        <div style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #c3e6cb;">
+          <i class="fas fa-check-circle"></i> Game added to cart successfully!
+        </div>
+      <?php endif; ?>
       <div class="game-detail-price-row">
         <span class="game-detail-price"><?= number_format($game['price'],2) ?> €</span>
         <form action="../database/add_to_cart.php" method="post" class="add-to-cart-form">

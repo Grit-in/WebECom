@@ -1,16 +1,15 @@
 <?php
-<?php
 session_start();
 require_once __DIR__ . '/database_init.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../php/admin_index.php');
+    header('Location: ../php/game.php?id=' . (isset($_POST['id']) ? (int)$_POST['id'] : 0));
     exit;
 }
 
 $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 if ($id <= 0) {
-    header('Location: ../php/admin_index.php');
+    header('Location: ../php/index.php');
     exit;
 }
 
@@ -18,18 +17,26 @@ $db = new Database();
 $game = $db->getGameById($id);
 
 if (!$game) {
-    header('Location: ../php/admin_index.php');
+    header('Location: ../php/index.php');
     exit;
 }
 
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
+$cart = [];
+if (isset($_COOKIE['cart'])) {
+    $cartData = json_decode($_COOKIE['cart'], true);
+    if (is_array($cartData)) {
+        $cart = $cartData;
+    }
 }
 
-if (isset($_SESSION['cart'][$id])) {
-    $_SESSION['cart'][$id]['qty'] += 1;
+if (!is_array($cart)) {
+    $cart = [];
+}
+
+if (isset($cart[$id]) && is_array($cart[$id]) && isset($cart[$id]['qty'])) {
+    $cart[$id]['qty'] = (int)$cart[$id]['qty'] + 1;
 } else {
-    $_SESSION['cart'][$id] = [
+    $cart[$id] = [
         'id'    => $id,
         'title' => $game['title'],
         'price' => (float)$game['price'],
@@ -38,5 +45,7 @@ if (isset($_SESSION['cart'][$id])) {
     ];
 }
 
-header('Location: ../php/cart.php');
+setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
+
+header('Location: ../php/game.php?id=' . $id . '&added=1');
 exit;

@@ -13,6 +13,20 @@ require_once dirname(__DIR__) . '/database/database_init.php';
 
 $db = new Database();
 $games = $db->getAllGames();
+
+$cart = [];
+$itemCount = 0;
+if (isset($_COOKIE['cart'])) {
+    $cartData = json_decode($_COOKIE['cart'], true);
+    if (is_array($cartData)) {
+        $cart = $cartData;
+        foreach ($cart as $item) {
+            if (isset($item['qty']) && is_numeric($item['qty'])) {
+                $itemCount += (int)$item['qty'];
+            }
+        }
+    }
+}
 ?>
 
 
@@ -23,19 +37,22 @@ $games = $db->getAllGames();
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" href="../css/output.css">
      <link rel="stylesheet" href="../css/styles.css">
+     <link rel="stylesheet" href="../css/gameshop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-<body>
     <nav class="navbar">
       <div class="navbar__container">
-        <a href="index.php" id="navbar__logo">
+        <a href="../index.php" id="navbar__logo">
           <i class="fas fa-gamepad"></i>
         </a>
 
         <li class="shop-icon">
-          <a href="cart.php" class="btn" id="cartBtn" style="margin-right:10px;">
+          <a href="cart.php" class="btn" id="cartBtn" style="margin-right:10px; position: relative;">
             <i class="fa-solid fa-cart-shopping"></i>
+            <?php if ($itemCount > 0): ?>
+                <span class="ic"><?= $itemCount ?></span>
+            <?php endif; ?>
           </a>
         </li>
 
@@ -46,15 +63,12 @@ $games = $db->getAllGames();
               <?= htmlspecialchars($user, ENT_QUOTES|ENT_HTML5, 'UTF-8') ?>
             </button>
             <ul class="dropdown-menu" id="dropdownMenu">
-              <li><a href="settings.php"><i class="fa-solid fa-gear"></i> Settings</a></li>
-              <li><a href="../database/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a></li>
+              <li><a href="../php/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a></li>
             </ul>
           </div>
         </li>
       </div>
     </nav>
-
-
     <div class="hero-banner" style="background-image: url('../imgs/navbarimg.jpg');"></div>
 
     <main class="main">
@@ -71,7 +85,10 @@ $games = $db->getAllGames();
                     <h3><?= htmlspecialchars($g['title'],ENT_QUOTES) ?></h3>
                     <h2 class="price"><?= number_format($g['price'],2) ?> <small>€</small></h2>
                     <a href="game.php?id=<?= (int)$g['id'] ?>" class="buy">Buy Now</a>
-                    <a href="#" class="delete">X</a>
+                    <form method="post" action="../database/delete_game.php" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete <?= htmlspecialchars($g['title'], ENT_QUOTES) ?>? This action cannot be undone.');">
+                        <input type="hidden" name="id" value="<?= (int)$g['id'] ?>">
+                        <button type="submit" class="delete">X</button>
+                    </form>
                 </div>
               </div> 
             <?php endforeach; ?>
