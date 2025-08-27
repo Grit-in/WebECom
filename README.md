@@ -69,5 +69,15 @@ cd WebECom
 ### 3. Database Setup  
 
 1. Open **phpMyAdmin** in your browser.
-2. Create a new database (example: `users_db`).  
-3. Import the SQL schema from the `/database/` folder of this project.  
+2. Select new data base and import the init.sql file. ( It will have users and passwords that is just for testing )
+
+### 4. Create `config.ini` File  
+
+Inside the **root of the project**, create a file named **`config.ini`** with the following content:  
+
+```ini
+[database]
+host = localhost
+database = users_db ( can be a name of any database but you`ll need to rewamp the whole project due to names)
+user = root
+password =
