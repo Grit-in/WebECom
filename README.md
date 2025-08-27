@@ -83,4 +83,4 @@ user = root
 password =
 ```
 ### 5. Run the project
-1. Open http://localhost/WebECom/public/index.html
+1. Open http://localhost/WebECom/public/index.php
