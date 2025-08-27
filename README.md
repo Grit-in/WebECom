@@ -81,3 +81,6 @@ host = localhost
 database = users_db ( can be a name of any database but you`ll need to rewamp the whole project due to names)
 user = root
 password =
+```
+### 5. Run the project
+1. Open http://localhost/WebECom/public/index.html
