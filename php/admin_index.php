@@ -27,10 +27,8 @@ $games = $db->getAllGames();
 </head>
 <body>
 <body>
-    <!--NavBar-->
     <nav class="navbar">
       <div class="navbar__container">
-        <!-- Logo -->
         <a href="index.php" id="navbar__logo">
           <i class="fas fa-gamepad"></i>
         </a>
@@ -57,10 +55,8 @@ $games = $db->getAllGames();
     </nav>
 
 
-    <!-- Hero Banner -->
     <div class="hero-banner" style="background-image: url('../imgs/navbarimg.jpg');"></div>
 
-      <!-- Main -->
     <main class="main">
       <div class="main__container">
         <div class="main__content">

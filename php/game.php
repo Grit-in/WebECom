@@ -12,7 +12,6 @@ if (!$game) {
 }
 $title = $game['title'] . ' | Ecom Games';
 $bgImg = '../imgs/items/' . htmlspecialchars($game['image'], ENT_QUOTES);
-// Set user variable for navbar display
 $user = $_SESSION['username'] ?? $_SESSION['name'] ?? (isset($_SESSION['email']) ? explode('@', $_SESSION['email'])[0] : 'User');
 ?>
 <!DOCTYPE html>
@@ -27,7 +26,6 @@ $user = $_SESSION['username'] ?? $_SESSION['name'] ?? (isset($_SESSION['email'])
 <body>
     <nav class="navbar">
       <div class="navbar__container">
-        <!-- Logo -->
         <a href="index.php" id="navbar__logo">
           <i class="fas fa-gamepad"></i>
         </a>
@@ -58,7 +56,6 @@ $user = $_SESSION['username'] ?? $_SESSION['name'] ?? (isset($_SESSION['email'])
       </div>
     </nav>
 
-<!-- Hero Banner / Diagonal Background -->
   <main class="game-detail-row">
     <div class="game-detail-img-wrapper">
       <img 

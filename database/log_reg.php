@@ -17,7 +17,6 @@ function clear_remember_cookie() {
     setcookie(REMEMBER_COOKIE_NAME, '', time() - 3600, '/', '', false, true);
 }
 
-// REGISTER
 if (isset($_POST["register"])) {
     $username = trim($_POST['username']); 
     $email = trim($_POST['email']); 
@@ -25,7 +24,6 @@ if (isset($_POST["register"])) {
     $confirm = $_POST['confirm_password']; 
     $role = 'user';
 
-    // Password checks
     if ($password !== $confirm) {
         $_SESSION['register_error'] = htmlspecialchars("Passwords are not matching!", ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $_SESSION['active_form'] = 'register';
@@ -62,7 +60,6 @@ if (isset($_POST["register"])) {
         exit;
     }
 
-    // Insert user
     if ($db->insertVezbe($username, $email, $password, $role)) {
         $_SESSION['username'] = $username;
         $_SESSION['name'] = $username;

@@ -27,10 +27,8 @@ $games = $db->getAllGames();
 </head>
 <body>
 <body>
-    <!--NavBar-->
     <nav class="navbar">
       <div class="navbar__container">
-        <!-- Logo -->
         <a href="index.php" id="navbar__logo">
           <i class="fas fa-gamepad"></i>
         </a>

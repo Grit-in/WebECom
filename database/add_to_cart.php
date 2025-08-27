@@ -1,7 +1,7 @@
 <?php
-// database/add_to_cart.php
+<?php
 session_start();
-require_once __DIR__ . '/database_init.php'; // adjust if your bootstrap file path differs
+require_once __DIR__ . '/database_init.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ../php/admin_index.php');

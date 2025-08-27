@@ -96,7 +96,6 @@ li{
   background: #f1644b;
 }
 
-/* --- Main --- */
 .main {
   background: #141414;
   padding: 50px 0;
@@ -161,7 +160,6 @@ li{
   clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
 }
 
-/* dropdown osnovni stil */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -195,7 +193,6 @@ li{
   background-color: #f1f1f1;
 }
 
-/* kad se klikne (toggle) */
 .dropdown-menu.show {
   display: block;
 }

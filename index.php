@@ -11,7 +11,6 @@ if(isset($_SESSION['email'])){
 }
 $title = "Ecom Games";
 
-// errors
 $errors = [
     'login'    => $_SESSION['login_error'] ?? '',
     'register' => $_SESSION['register_error'] ?? ''
@@ -39,15 +38,12 @@ function isActiveForm($formName, $activeForm) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-   <!--NavBar-->
     <nav class="navbar">
       <div class="navbar__container">
-        <!-- Logo -->
         <a href="index.php" id="navbar__logo">
           <i class="fas fa-gamepad"></i>
         </a>
 
-        <!-- Menu -->
         <ul class="navbar__menu">
           <li class="navbar__item">
             <a href="#" class="navbar__links">MatchUp Guide</a>
@@ -84,10 +80,8 @@ function isActiveForm($formName, $activeForm) {
       </div>
     </nav>
 
-    <!-- Hero Banner -->
     <div class="hero-banner"></div>
     
-    <!-- Main -->
     <main class="main">
       <div class="main__container">
         <div class="main__content">
