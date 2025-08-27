@@ -2,7 +2,7 @@
 
 ## 📌 Description  
 
-**WebECom** is a simple e-commerce web application developed to practice **web development fundamentals**.  
+**WebECom** is a simple e-commerce web application developed to practice **web development course**.  
 It demonstrates the core features of an online store, including product browsing, cart management, and session handling.  
 
 The project focuses on building a **functional backend** and combining it with a **clean, responsive frontend**.  
@@ -14,7 +14,6 @@ The project focuses on building a **functional backend** and combining it with a
 - 🛍️ **Product Listings** with titles, images, and prices  
 - 🛒 **Shopping Cart** with add, remove, and update functionality  
 - 🔑 **Session Management** for cart persistence  
-- 📱 **Responsive Design** for desktop and mobile  
 
 ---
 
@@ -65,3 +64,10 @@ Navigate to your **XAMPP installation folder** and clone the project into the `h
 cd C:\xampp\htdocs
 git clone https://github.com/Grit-in/WebECom
 cd WebECom
+```
+
+### 3. Database Setup  
+
+1. Open **phpMyAdmin** in your browser.
+2. Create a new database (example: `users_db`).  
+3. Import the SQL schema from the `/database/` folder of this project.  
