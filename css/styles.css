@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
+body {
+  background: #141414;
+  color: #fff;
+}
+
+li{
+  list-style: none;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.navbar.scrolled {
+  border-bottom: 2px solid #f1644b;
+}
+
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+#navbar__logo {
+  background: linear-gradient(to top, black 0%, #39FF14 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar__item {
+  height: 56px;
+  margin-right: 10px;
+}
+
+.navbar__links {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  height: 100%;
+  text-decoration: none;
+}
+
+.navbar__links:hover {
+  color: #f1644b;
+  transition: all 0.3s ease;
+}
+
+.navbar__btn .btn {
+  padding: 10px 20px;
+  list-style: none;
+  border-radius: 5px;
+  background: #dd8238f8;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.navbar__btn .btn:hover {
+  background: #f1644b;
+}
+
+/* --- Main --- */
+.main {
+  background: #141414;
+  padding: 50px 0;
+}
+
+.main__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.main__content h1 {
+  font-size: 3rem;
+  background: linear-gradient(to top, #f1644b 0%, #e98b3ef8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main__content h2 {
+  font-size: 2.5rem;
+  margin-top: 10px;
+  color: #e98b3e;
+}
+
+.main__content p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.main__btn {
+  margin-top: 2rem;
+  background: linear-gradient(to right, #dd7825f8, #ad3ea4f8);
+  padding: 12px 24px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.main__btn a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.main__btn:hover {
+  background: #f1644b;
+}
+
+.main-img--container img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.hero-banner {
+  width: 100%;
+  height: 700px;
+  background-size: cover;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+}
+
+/* dropdown osnovni stil */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #141414;
+  min-width: 160px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f1f1f1;
+}
+
+/* kad se klikne (toggle) */
+.dropdown-menu.show {
+  display: block;
+}
+
+.shop-icon {
+  color: white;
+  background: transparent;
+  -webkit-background-clip: text;
+  list-style: none;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding-right: 50px;
+  font-size: 20px;
+}
+
+.shop-icon:hover {
+    background: linear-gradient(to top, black 0%, #39FF14 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#cartBtn i,
+.shop-icon i,
+.fa-cart-shopping {
+  color: #fff !important;
+}
+
+#cartBtn:hover i,
+.shop-icon:hover i {
+  color: #39FF14 !important;
+}
