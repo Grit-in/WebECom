@@ -25,7 +25,6 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `remember_to
 (1, 'test', 'test@test.com', '$2y$10$io5zI5mSCNSSlpVbnqBdNeLXeRVV6xUQ3udEokjmzxWqzBoU90P6C', 'admin', NULL),
 (2, 'test2', 'test2@gmail.com', '$2y$10$DXS5A.TXsH37U1KhCMqZ3ufmqBHN/YQf9PkeIHAb3ZmzgjFIDoE86', 'user', NULL),
 (3, 'user', 'user@user.com', '$2y$10$7IXVbvXCrGNcYKO8sGvHq.HrNT/yVyw8DJTWMdQKb2ccL86NIneN.', 'user', NULL),
-(4, 'tester3', 'daniloistijanovic3@gmail.com', '$2y$10$rUmoOH.hXw4N0IAYET5riOudLeoqxxk6PIC0tP58hPIxEl2CRTwxi', 'admin', NULL);
 
 INSERT INTO `games` (`id`, `title`, `slug`, `description`, `price`, `image`) VALUES
 (1, 'Elden Ring Nightreign', 'elden-ring-nightreign', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 19.99, 'eldenring.jpg'),
