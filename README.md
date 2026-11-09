@@ -11,9 +11,9 @@ The project focuses on building a **functional backend** and combining it with a
 
 ##  Features  
 
-- 🛍️ **Product Listings** with titles, images, and prices  
-- 🛒 **Shopping Cart** with add, remove, and update functionality  
-- 🔑 **Session Management** for cart persistence  
+-  **Product Listings** with titles, images, and prices  
+-  **Shopping Cart** with add, remove, and update functionality  
+-  **Session Management** for cart persistence  
 
 ---
 
