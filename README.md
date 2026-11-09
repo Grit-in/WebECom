@@ -1,6 +1,6 @@
 # WebECom – E-Commerce Website  
 
-## 📌 Description  
+##  Description  
 
 **WebECom** is a simple e-commerce web application developed to practice **web development course**.  
 It demonstrates the core features of an online store, including product browsing, cart management, and session handling.  
@@ -9,7 +9,7 @@ The project focuses on building a **functional backend** and combining it with a
 
 ---
 
-## ✨ Features  
+##  Features  
 
 - 🛍️ **Product Listings** with titles, images, and prices  
 - 🛒 **Shopping Cart** with add, remove, and update functionality  
@@ -17,7 +17,7 @@ The project focuses on building a **functional backend** and combining it with a
 
 ---
 
-## 🛠️ Technologies Used  
+##  Technologies Used  
 
 - **Frontend:**  
   - HTML5  
@@ -33,7 +33,7 @@ The project focuses on building a **functional backend** and combining it with a
 
 ---
 
-## 🎨 Design Principles  
+##  Design Principles  
 
 - **Usability:** Simple navigation and intuitive shopping flow  
 - **Accessibility:** High contrast text and keyboard-friendly navigation  
