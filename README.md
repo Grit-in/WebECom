@@ -51,8 +51,8 @@ Follow these steps to set up the project on your local machine using **XAMPP**:
 - Download and install **XAMPP** from [Apache Friends](https://www.apachefriends.org/).  
 - Open the **XAMPP Control Panel**.  
 - Start the following services:  
-  - ✅ Apache  
-  - ✅ MySQL  
+  -  Apache  
+  -  MySQL  
 
 ---
 
